@@ -116,7 +116,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    require('../../Backend/Clase/personal.class.php');
+                    require('class/personal.class.php');
                     $obj_personal = new personal;
                     $obj_personal->nom_usu = "nom_usu";
                     $obj_personal->puntero = $obj_personal->listar();
@@ -126,7 +126,7 @@
                         echo "<tr>
                                 
                                 <td>" . htmlspecialchars($personal['nom_usu']) . "</td>
-                                <td>" . htmlspecialchars($personal['cla_usu']) . "</td>
+                                <td>" . htmlspecialchars($personal['clave_usu']) . "</td>
                                 <td>" . htmlspecialchars($personal['id_rol']) . "</td>
                                 <td>
                                     <a href='../../Backend/Controlador/personal.php?accion=eliminar&id_usu=" . htmlspecialchars($personal['id_usu']) . "' class='btn-delete'>ELIMINAR</a>
@@ -150,7 +150,7 @@
 <script>
     function validarFormulario() {
         var nombre = document.getElementById("nom_usua").value;
-        var clave = document.getElementById("cla_usu").value;
+        var clave = document.getElementById("clave_usu").value;
 
         // Expresión regular para letras
         var regexLetras = /^[a-zA-Z\s]+$/;

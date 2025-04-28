@@ -1,5 +1,5 @@
 <?php
-require('../clase/clase_patente.php');
+require_once('../class/patente.class.php');
 
 $obj_patente = new patente();
 $obj_patente->asignar_valor();
@@ -7,12 +7,12 @@ $obj_patente->asignar_valor();
 switch ($_REQUEST["accion"]) {
     case 'insertar':
         $obj_patente->resultado = $obj_patente->insertar();
-        $obj_patente->mensaje();
+         $obj_patente->mensaje_patente(); 
         break;
 
     case 'modificar':
         $obj_patente->resultado = $obj_patente->modificar();
-        $obj_patente->mensaje_modificar();
+        $obj_patente->mensaje_modificar_patente();
         break;
 
     case 'eliminar':

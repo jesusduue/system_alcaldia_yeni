@@ -1,6 +1,5 @@
 <?php
-require_once('Controllers/utilidad.class.php');
-
+require_once('utilidad.class.php');
 class Patente extends Utilidad
 {
     public $id_pate;
@@ -14,7 +13,7 @@ class Patente extends Utilidad
 
     public function insertar()
     {
-        $this->que_bd = "INSERT INTO patente (numero_exp, razon_so, rep_legal, ced_rif, ubicacion, rubro, estado)
+     echo  $this->que_bd = "INSERT INTO patente (numero_exp, razon_so, rep_legal, ced_rif, ubicacion, rubro, estado)
         VALUES ('$this->numero_exp',
                 '$this->razon_so',
                 '$this->rep_legal',

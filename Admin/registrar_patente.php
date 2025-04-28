@@ -193,36 +193,36 @@
                 Patentar es asegurar el futuro de su invento: protección legal y reconocimiento de autoría.
             </p>
 
-            <form action="../Controllers/controlador_patente.php" method="POST">
+            <form action="Controllers/controlador_patente.php" method="POST">
                 <input type="hidden" name="accion" value="insertar">
 
                 <div class="form-section">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="numero_exp">número de expediente:</label>
+                            <label for="numero_exp">Numero de Patente:</label>
                             <input type="text" id="numero_exp" name="numero_exp">
                         </div>
                         <div class="form-group">
                             <label for="fecha_apertura">fecha de apertura:</label>
-                            <input type="date" id="fecha_apertura" name="fecha_apertura">
+                            <input type="date" id="fecha_apertura" name="">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="razon_social">razón social:</label>
-                            <input type="text" id="razon_social" name="razon_social">
+                            <input type="text" id="razon_social" name="razon_so">
                         </div>
                         <div class="form-group">
                             <label for="representante_legal">representante Legal:</label>
-                            <input type="text" id="representante_legal" name="representante_legal">
+                            <input type="text" id="representante_legal" name="rep_legal">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cedula_rif">cédula o RIF:</label>
-                            <input type="text" id="cedula_rif" name="cedula_rif">
+                            <input type="text" id="cedula_rif" name="ced_rif">
                         </div>
                         <div class="form-group">
                             <label for="ubicacion">ubicación:</label>
@@ -242,7 +242,7 @@
                 <div class="divider"></div>
 
                 <div class="form-section">
-                    <h2 class="section-title">Validación</h2>
+                   <!--  <h2 class="section-title">Validación</h2>
                     <div class="form-row dates">
                         <div class="form-group">
                             <label for="fecha_inicio">Desde:</label>
@@ -251,7 +251,7 @@
                         <div class="form-group">
                             <label for="fecha_fin">Hasta:</label>
                             <input type="date" id="fecha_fin" name="fecha_fin">
-                        </div>
+                        </div> -->
                         <button type="submit">Registrar</button>
                         <button type="reset">LIMPIAR</button>
                     </div>

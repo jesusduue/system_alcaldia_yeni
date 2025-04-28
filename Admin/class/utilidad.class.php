@@ -9,7 +9,7 @@ class Utilidad
     public $que_bd;
     public $resultado;
     public $puntero;
-
+/**/
     function __construct()
     {
         $this->nombre_servidor = "localhost";
@@ -46,7 +46,7 @@ class Utilidad
     public function asignar_valor()
     {
         foreach ($_REQUEST as $atributo => $valor) {
-            $this->$atributo = $valor;
+      @  $this->$atributo = $valor;
         }
     }
 
@@ -78,12 +78,12 @@ class Utilidad
         if ($this->resultado === true) {
             echo "<script language='javascript'>\n";
             echo "alert('eliminado');\n";
-            echo "document.location='../../frontend/vista/listado.personal.php'";
+            echo "document.location=''";
             echo "</script>";
        } else {
         echo "<script language='javascript'>\n";
         echo "alert('hubo un error ya que existe registro previo en el control de carpeta');\n";
-        echo "document.location='../../frontend/vista/listado.personal.php'";
+        echo "document.location=''";
         echo "</script>";
        }
     }
@@ -93,7 +93,7 @@ class Utilidad
         if ($this->resultado === true) {
             echo "<script language='javascript'>\n";
             echo "alert('registro de patente confirmado');\n";
-            echo "document.location='../../frontend/vista/registro.patente.php'";
+            echo "document.location='../listado.patente.php'";
             echo "</script>";
        } else {
            echo "Hubo un error";
