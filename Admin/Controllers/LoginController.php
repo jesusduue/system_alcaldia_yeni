@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 // Requiere la clase Utilidad
-require_once('utilidad.class.php');
+require_once('../class/utilidad.class.php');
 
 // Clase para la gestión de usuarios
 class Usuario extends utilidad
