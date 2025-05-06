@@ -1,5 +1,5 @@
 <!-- Barra Lateral -->
-<div class="sidebar">
+<div class="sidebar oculto-impresion">
     <h2>Menú</h2>
     <ul>
         <li><img src="../../public/img/logo_alcaldia_la_fria.png" alt="Logo Alcaldía" style="max-width: 60%; height: auto; display: block; margin: 0 auto;"></li>
@@ -12,7 +12,7 @@
 </div>
 
 <!-- Barra Superior -->
-<div class="topbar">
+<div class="topbar oculto-impresion">
     <div class="profile">
         <img src="layout/profile-picture.jpg" alt="Perfil">
         <span>Mi Perfil</span>

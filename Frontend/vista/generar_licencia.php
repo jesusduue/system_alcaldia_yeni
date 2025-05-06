@@ -1,13 +1,17 @@
-<?php include_once './layout/header_licencia.php';
+<?php include_once 'header.php';
 
-require_once('class/patente.class.php');
+require_once('../../Backend/clase/patente_class.php');
 
 $obj_patente = new patente;
+$obj_patente->asignar_valor();
+$obj_patente->puntero= $obj_patente->mostrar_patente();
+$patente=$obj_patente->extraer_dato();
+// $patente = $obj_patente->mostrar_patente($id_pat); // Obtener la patente por ID
+if (isset($_GET['id_pat'])) {
+    $id_pat = $_GET['id_pat'];
 
-if (isset($_GET['id_pate'])) {
-    $id_pate = $_GET['id_pate'];
 
-    $patente = $obj_patente->obtenerPorCodigo($id_pate);
+    
 
     if (!$patente) {
         echo "Patente no encontrado.";
@@ -17,15 +21,15 @@ if (isset($_GET['id_pate'])) {
     echo "Código de patente no proporcionado.";
     exit;
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $obj_patente->id_pate = $id_pate;
-    $obj_patente->numero_exp = $_POST['numero_exp'];
-    $obj_patente->razon_so = $_POST['razon_so'];
-    $obj_patente->rep_legal = $_POST['rep_legal'];
-    $obj_patente->ced_rif = $_POST['ced_rif'];
-    $obj_patente->ubicacion = $_POST['ubicacion'];
-    $obj_patente->rubro = $_POST['rubro'];
-    $obj_patente->estado = $_POST['estado'];
+/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $obj_patente->id_pat = $id_pat;
+    $obj_patente->num_pat = $_POST['num_pat'];
+    $obj_patente->nom_pat = $_POST['nom_pat'];
+    $obj_patente->rep_pat = $_POST['rep_pat'];
+    $obj_patente->rif_pat = $_POST['rif_pat'];
+    $obj_patente->ubi_pat = $_POST['ubi_pat']; /// CODIGO PARA MODIFICAR VALORES DE LA PATENTE
+    $obj_patente->rub_pat = $_POST['rub_pat'];
+    $obj_patente->est_pat = $_POST['est_pat'];
     
     $resultado = $obj_patente->modificar();
 
@@ -37,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error al modificar el producto.";
     }
-}
+} */
 // Verificar el rol del usuario y redirigir si no es un administrador
 if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
     header("Location:../../index.php"); // Redirige a la página de inicio de sesión si no cumple con los requisitos
@@ -52,7 +56,7 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Licencia de Actividades Económicas</title>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../estilos/css/style.css">
     <!-- <link rel="icon" href="../../../public/img/logo_alcaldia_la_fria.png" type="image/x-icon"> -->
     <style>
         body {
@@ -73,12 +77,22 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
             max-width: 700px;
             /* Maximum width */
             background-color: #fff;
-            border: 6px solid #000;
+            /* border: 2px solid #000; */
             border-radius: 70px;
             padding: 15px;
             box-sizing: border-box;
             position: relative;
+            /* estilos para imagen de fondo */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../estilos/img/logo_alcaldia_la_fria.png');
+            background-repeat: no-repeat, no-repeat;
+            background-size: cover, contain; /* Ajusta según necesites */
+            background-position: center, center;
+
             /* For absolute positioning of logos */
+        background-color: #ffffff;
+       
+        
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         .header {
@@ -89,18 +103,30 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
             text-align: center;
             margin-bottom: 10px;
         }
+        .logo-left{
+            width: 100px;
+            height: 60px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url('../estilos/img/logo_wiliton.png');
+            background-repeat: no-repeat, no-repeat;
+            background-size: cover, contain; /* Ajusta según necesites */
+            background-position: center, center;
+        }
 
-        .logo-left,
+        
         .logo-right {
             width: 60px;
             /* Adjust logo size */
             height: 60px;
             border: 1px solid #000;
+            border-radius: 20px;
+            
             /* Placeholder border */
             /* You'll need to add your actual logo images here */
         }
 
         .header-text {
+            width: 450px;
+            height: auto;
             font-size: 0.8em;
             line-height: 1.2;
             font-family: Courier New;
@@ -285,17 +311,38 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
 
         .campos input {
             font-family: Courier New;
+            font-weight: bold;
             border: none;
             outline: none;
             border-bottom: #000 2px solid;
-
+            background: local;
         }
+        @media print{
+  .oculto-impresion, .oculto-impresion *{
+    display: none !important;
+  }
+ .license {
+        background-color: #007bff;
+        color: white;
+    }
+
+.license:hover {
+        background-color: #0056b3;
+    }
+}
     </style>
 </head>
 
 <body>
-<?php include_once './layout/nav.php'; ?>
-    <div class="licencia-container">
+<?php include_once 'panel_navegacion.php'; ?>
+
+
+    <div class="licencia-container ">
+    <form action="../../Backend/controlador/licencia.php" method="POST">
+    <input type="hidden" name="accion" value="insertar">
+
+    <input type="hidden" name="fky_pat" value="<?php echo $id_pat; ?>">
+    <input type="hidden" name="est_lic" value="a"> <!-- Estado de la licencia (a=activa) -->
 
         <div class="header">
             <div class="logo-left">
@@ -308,39 +355,39 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
                     Licencia de Actividades Económicas</span>
 
             </div>
-            <div class="logo-right">
+            <div class="logo-right">FOTO
             </div>
         </div>
 
         <div class="rif-patente campos">
             RIF: 
-            <input type="text" id="rif" name="rif" value="<?php echo isset($patente['ced_rif']) ? htmlspecialchars($patente['ced_rif']) : ''; ?>">
+            <input type="text" id="rif" name="rif" value="<?php echo isset($patente['rif_pat']) ? htmlspecialchars($patente['rif_pat']) : ''; ?>">
 
             <span class="pat">Patente No.:</span>
-            <input type="text" id="patente" name="patente" value="<?php echo isset($patente['numero_exp']) ? htmlspecialchars($patente['numero_exp']) : ''; ?>">
-            <div class="year-box">202</div>
+            <input type="text" id="patente" name="patente" value="<?php echo isset($patente['num_pat']) ? htmlspecialchars($patente['num_pat']) : ''; ?>">
+            <div class="year-box">2025</div>
         </div>
 
         <div class="contribuyente campos">
             Razón Social: 
-            <input type="text" id="nombre" name="nombre" value="<?php echo isset($patente['razon_so']) ? htmlspecialchars($patente['razon_so']) : ''; ?>">
+            <input type="text" id="nombre" name="nombre" value="<?php echo isset($patente['nom_pat']) ? htmlspecialchars($patente['nom_pat']) : ''; ?>">
         </div>
 
         <div class="representante campos">
             Representante Legal: 
             <input type="text" id="representante" name="representante"
-                value="<?php echo isset($patente['rep_legal']) ? htmlspecialchars($patente['rep_legal']) : ''; ?>">
+                value="<?php echo isset($patente['rep_pat']) ? htmlspecialchars($patente['rep_pat']) : ''; ?>">
         </div>
 
         <div class="direccion campos">
             Dirección: 
-            <input type="text" id="direccion" name="direccion"  value="<?php echo isset($patente['ubicacion']) ? htmlspecialchars($patente['ubicacion']) : ''; ?>">
+            <input type="text" id="direccion" name="direccion"  value="<?php echo isset($patente['ubi_pat']) ? htmlspecialchars($patente['ubi_pat']) : ''; ?>">
         </div>
 
         <div class="actividad campos">
             Descripción Actividad:
             <input type="text" id="actividad" name="actividad"
-                value="<?php echo isset($patente['rubro']) ? htmlspecialchars($patente['rubro']) : ''; ?>">
+                value="<?php echo isset($patente['rub_pat']) ? htmlspecialchars($patente['rub_pat']) : ''; ?>">
         </div>
 
         <div class="months-grid">
@@ -356,7 +403,7 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
                     name="mayo_slash"> / <input type="text" name="mayo_year"></div>
             <div class="month">Junio<br>Recibo No.<br><input type="text" name="junio_recibo"> / <input type="text"
                     name="junio_slash"> / <input type="text" name="junio_year"></div>
-            <div class="month big-text">FEJHF<br>FFFFFE</div>
+            <div class="month big-text">FIRMA<br>SELLO</div>
             <div class="month">Julio<br>Recibo No.<br><input type="text" name="julio_recibo"> / <input type="text"
                     name="julio_slash"> / <input type="text" name="julio_year"></div>
             <div class="month">Agosto<br>Recibo No.<br><input type="text" name="agosto_recibo"> / <input type="text"
@@ -369,7 +416,7 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
                     type="text" name="noviembre_slash"> / <input type="text" name="noviembre_year"></div>
             <div class="month">Diciembre<br>Recibo No.<br><input type="text" name="diciembre_recibo"> / <input
                     type="text" name="diciembre_slash"> / <input type="text" name="diciembre_year"></div>
-            <div class="month big-text">HWJGHG</div>
+            <div class="month big-text"></div>
         </div>
 
         <div class="area-timbre">
@@ -379,10 +426,13 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
         <div class="bottom-info">
             <div class="place-date">La Fría Edo. Táchira</div>
             <div class="coloque">COLOQUESE EN <br> LUGAR VISIBLE</div>
+
             <div class="validity">
-                VALIDO A PARTIR EL: <input type="text" id="valido_desde" name="valido_desde" value="01-07-2022"
-                    placeholder="01-07-2022"> hasta: <input type="text" id="valido_hasta" name="valido_hasta"
-                    value="31-12-2022" placeholder="31-12-2022">
+                VALIDO A PARTIR EL: 
+            <input type="date" id="valido_desde" name="valido_desde" value="01-07-2022"
+                    placeholder="01-07-2022"> 
+                HASTA:
+             <input type="date" id="valido_hasta" name="fec_ven"><!--"fec_ven" para guardar la fecha de vencimiento en la tabla licencia -->
             </div>
             <div class="nota">
                 NOTA: Al cesar este negocio, devuelva este permiso con una carta, participando el caso, así mismo cuando
@@ -390,13 +440,20 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
             </div>
             <div class="directora">
                <br>
-                DIRECTORA DE HACIENDA Y <br>
-                RECAUDACION
+               
             </div>
         </div>
-
+         <button type="submit" class="btn oculto-impresion" onclick="imprimirPantalla()" value="imprimir"><i class="fas fa-print"></i> Imprimir</button>
+</form>      
     </div>
+   
 
+
+<script>
+function imprimirPantalla() {
+    window.print();
+}
+</script>
 </body>
 
 </html>

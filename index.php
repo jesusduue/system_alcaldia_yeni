@@ -1,10 +1,10 @@
-<?php include_once 'layout/header.php'; ?>
+<?php include_once 'Frontend/vista/header.php'; ?>
 <title>Inicio de Sesión - SistemaPat</title>
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background-image: url('public/img/alcaldia.jpg');
+        background-image: url('Frontend/estilos/img/alcaldia.jpg');
         background-size: cover;
         background-position: center;
         display: flex;
@@ -102,16 +102,16 @@
 <main>
     <div class="login-container">
         <div class="logo-container">
-            <img src="public/img/logo_alcaldia_la_fria.png" alt="Logo Alcaldía">
+            <img src="Frontend/estilos/img/logo_alcaldia_la_fria.png" alt="Logo Alcaldía">
         </div>
         <h1>Bienvenido a SistemaPat</h1>
         <h2>Gestión y Control de Patentes</h2>
         <p>Construyendo naciòn y forjando futuro</p>
-        <form class="login" action="Admin/Controllers/LoginController.php" method="post">
+        <form class="login" action="Backend/clase/login_class.php" method="post">
             <input type="text" name="nom_usu" placeholder="Nombre de Usuario" required>
-            <input type="password" name="clave_usu" placeholder="Contraseña" required>
+            <input type="password" name="cla_usu" placeholder="Contraseña" required>
             <button type="submit">Iniciar Sesión</button>
         </form>
     </div>
 </main>
-<?php include_once 'layout/footer.php'; ?>
+<?php include_once 'Frontend/vista/footer.php'; ?>

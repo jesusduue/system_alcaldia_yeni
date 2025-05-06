@@ -1,24 +1,4 @@
-<?php /*
-require_once '../Models/Usuario.php';
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['nom_usu']);
-    $clave = trim($_POST['clave_usu']);
-
-    $usuarioModelo = new Usuario();
-    $usuario = $usuarioModelo->autenticar($nombre, $clave);
-
-    if ($usuario) {
-        $_SESSION['usuario'] = $usuario['nom_usu'];
-        $_SESSION['id_rol'] = $usuario['id_rol'];
-        header('Location: ../dahsboard.php'); // Redirige a dashboard o página principal
-    } else {
-        $_SESSION['error'] = 'Credenciales incorrectas';
-        header('Location: ../../index.php');
-    }
-    exit();
-}*/
+<?php
 
 
 // Requiere la clase Utilidad

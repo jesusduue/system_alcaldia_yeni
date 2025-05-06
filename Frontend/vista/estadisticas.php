@@ -1,4 +1,4 @@
-<div class="stats-container">
+<div class="stats-container oculto-impresion">
     <div class="stat-box">
         <i class="fas fa-file-alt"
             style="font-size: 30px; color: #007bff; margin-bottom: 10px; display: inline-block;"></i>

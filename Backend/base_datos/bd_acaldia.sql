@@ -1,5 +1,5 @@
-create database if not exists alcaldia;
-use alcaldia;
+create database if not exists alcaldia_patente;
+use alcaldia_patente;
 
 -- TABLA ROL: Almacena los tipos de permisos de usuarios
 CREATE TABLE rol (
@@ -18,10 +18,11 @@ CREATE TABLE usuario (
   FOREIGN KEY (fky_rol) REFERENCES rol(id_rol) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- TABLA PATENTE: Registra comercios con su informacion legal
+-- TABLA patNTE: Registra comercios con su informacion legal
 CREATE TABLE patente(
-  id_pate int PRIMARY KEY NOT NULL AUTO_INCREMENT,  -- Identificador unico de patente
-  num_pat int DEFAULT NULL,                        -- Numero oficial de patente (podria ser unico)
+  id_pat int PRIMARY KEY NOT NULL AUTO_INCREMENT,  -- Identificador unico de patnte
+  fec_pat date NOT NULL,                           -- Fecha de registro de la patnte
+  num_pat int DEFAULT NULL,                        -- Numero oficial de patnte (podria ser unico)
   nom_pat varchar(100) NOT NULL,                   -- Nombre legal del comercio
   rep_pat varchar(100) NOT NULL,                   -- Nombre del representante legal
   rif_pat varchar(50) NOT NULL,                    -- RIF del comercio (Ej: J-12345678-9)
@@ -35,17 +36,17 @@ CREATE TABLE patente(
 -- TABLA LICENCIA: Controla vigencia de permisos comerciales
 CREATE TABLE licencia(
   id_lic int PRIMARY KEY NOT NULL AUTO_INCREMENT,   -- Identificador unico de licencia
-  fky_pat int NOT NULL,                            -- Patente asociada (debe ser id_pate)
+  fky_pat int NOT NULL,                            -- patnte asociada (debe ser id_pat)
   fec_ven date NOT NULL,                           -- Fecha de vencimiento de la licencia
   est_lic varchar(1) NOT NULL,                     -- Estado (V=Vigente, C=Caducada, P=Pendiente)
-  FOREIGN KEY (fky_pat) REFERENCES patente(id_pate) ON DELETE RESTRICT ON UPDATE CASCADE
+  FOREIGN KEY (fky_pat) REFERENCES patente(id_pat) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 -- TABLA SOLVENCIA: Gestiona certificados de cumplimiento tributario
 CREATE TABLE solvencia(
   id_sol int PRIMARY KEY NOT NULL AUTO_INCREMENT,   -- Identificador unico de solvencia
-  fky_pat int NOT NULL,                            -- Patente asociada (debe ser id_pate)
+  fky_pat int NOT NULL,                            -- patnte asociada (debe ser id_pat)
   fec_ven date NOT NULL,                           -- Fecha hasta cuando es valida la solvencia
   est_sol varchar(1) NOT NULL,                     -- Estado (V=Valida, C=Caducada, R=Rechazada)
-  FOREIGN KEY (fky_pat) REFERENCES patente(id_pate) ON DELETE RESTRICT ON UPDATE CASCADE
+  FOREIGN KEY (fky_pat) REFERENCES patente(id_pat) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
