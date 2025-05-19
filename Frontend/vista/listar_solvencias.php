@@ -1,6 +1,6 @@
 <?php include_once 'header.php';?>
 <link rel="stylesheet" href="../estilos/css/style.css">
-<title>listado de Patentes</title>
+<title>listado de solvencias</title>
 <style>
     .main-content {
         margin-left: 250px;
@@ -21,10 +21,26 @@
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
-    .expired-row {
-        background-color: #ffcccc; /* Rojo claro */
+        .action-buttons a::after {
+        content: attr(data-tooltip);
+        /* Obtiene el texto del atributo data-tooltip */
+        position: absolute;
+        bottom: -30px;
+        /* Posiciona el tooltip debajo del botón */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 10;
     }
-.license {
+    .license {
         background-color:rgb(255, 255, 255);
         color: crimson;
     }
@@ -33,7 +49,7 @@
         color: #ffcccc;
       transform: scale(2,2);
        
-    }   
+    } 
 
 </style>
 
@@ -67,8 +83,8 @@
             $id_pat = mysqli_real_escape_string($conn, $id_pat);
     
             // Ejecuta la consulta SQL directamente
-             $consulta = "SELECT p.fec_pat,l.fec_ven, p.num_pat, p.nom_pat, p.rif_pat, l.est_lic, l.id_lic
-                         FROM licencia l
+             $consulta = "SELECT p.fec_pat,l.fec_ven, p.num_pat, p.nom_pat, p.rif_pat, l.est_sol, l.id_sol
+                         FROM solvencia l
                          JOIN patente p ON l.fky_pat = p.id_pat
                          WHERE l.fky_pat = $id_pat";
             /*$consulta = "SELECT * FROM factura WHERE cod_contribuyente = $id_pat";*/
@@ -79,18 +95,16 @@
             if ($result) {
                 if (mysqli_num_rows($result) > 0) {
                     echo "<div class='main-content'>
-                            <h2 class='mb-4 text-center'>PATENTES EMITIDAS</h2>
-                             
+                            <h2 class='mb-4 text-center'>SOLVENCIAS EMITIDAS</h2>
                             <table class='table table-striped'>
                                 <thead class='bg-primary text-white'>
                                 <tr>
-                                    
                                     <td>FECHA EMISION</td>
                                     <td>FECHA VENCIMIENTO</td>
                                     <td>Nº PATENTE</td>
                                     <td>RAZON SOCIAL</td>
                                     <td>CEDULA / RIF</td>
-                                    <td>ACCION</td>
+                                    <td>ACCCION</td>
                          
                                     </thead>
                                 </tr>
@@ -115,13 +129,16 @@
                             $clase = ''; // Verde
                         }
 
+                    
+                       // echo " Fecha vencimiento: $fecha_ven | Hoy: $hoy | Clase: $clase ";
+
                         echo "<tr class='$clase'>
                               <td>{$fila['fec_pat']}</td>
                               <td>{$fila['fec_ven']}</td>
                               <td>{$fila['num_pat']}</td>
                               <td>{$fila['nom_pat']}</td>
                               <td>{$fila['rif_pat']}</td>
-                              <td><a href='../../Backend/controlador/licencia.php?accion=eliminar&id_lic=" . $fila['id_lic'] . "'  class='license'  data-tooltip='ELIMINAR'><i class='fas fa-trash'></i></a></td>
+                              <td><a href='../../Backend/controlador/solvencia.php?accion=eliminar&id_sol=" . $fila['id_sol'] . "'  class='license'  data-tooltip='ELIMINAR'><i class='fas fa-trash'></i></a></td>
 
                               </tr>";
                     }

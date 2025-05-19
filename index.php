@@ -1,4 +1,4 @@
-<?php include_once 'Frontend/vista/header.php'; ?>
+<?php include_once 'Frontend/vista/header_index.php'; ?>
 <title>Inicio de Sesión - SistemaPat</title>
 <style>
     body {

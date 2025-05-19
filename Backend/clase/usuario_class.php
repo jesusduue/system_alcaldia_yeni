@@ -33,10 +33,37 @@ class usuario extends utilidad
 
     public function listar()
     {
-        $this->que_bd = "SELECT * FROM usuario";
+        @ $this->que_bd = "SELECT usuario.id_usu, usuario.nom_usu, rol.rol, usuario.est_usu, usuario.fky_rol FROM usuario 
+        inner join rol on usuario.fky_rol = rol.id_rol where 1=1";
         return $this->ejecutar();
     }
+    public function eliminar()
+    {
+      @  $this->que_bd = "DELETE FROM usuario WHERE id_usu = $this->id_usu";
+        $this->ejecutar();
+    }
 
+public function modificar()
+    {
+      @  $this->que_bd = "UPDATE usuario SET
+        nom_usu = '$this->nom_usu',
+        cla_usu = '$this->cla_usu',
+        fky_rol = '$this->fky_rol',
+        est_usu = '$this->est_usu'
+        WHERE id_usu = $this->id_usu";
+        $this->ejecutar();
+    }
+
+/*     
+    no funciona 
+public function asignar_valor()
+    {
+        $this->id_usu = $_POST["id_usu"];
+        $this->nom_usu = $_POST["nom_usu"];
+        $this->cla_usu = $_POST["cla_usu"];
+        $this->fky_rol = $_POST["fky_rol"];
+        $this->est_usu = $_POST["est_usu"];
+    } */
 
 }
 ?>

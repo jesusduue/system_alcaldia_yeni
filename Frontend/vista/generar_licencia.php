@@ -46,6 +46,8 @@ if (isset($_GET['id_pat'])) {
 if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
     header("Location:../../index.php"); // Redirige a la página de inicio de sesión si no cumple con los requisitos
     exit();
+
+ 
 }
 
 ?>
@@ -334,7 +336,14 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
 </head>
 
 <body>
-<?php include_once 'panel_navegacion.php'; ?>
+<?php include_once 'panel_navegacion.php'; 
+  function fecha_actual(){
+    date_default_timezone_set('america/caracas');
+    $fecha_hora = date('Y-m-d');
+    return $fecha_hora;
+  }
+  $fecha_hora =fecha_actual(); 
+?>
 
 
     <div class="licencia-container ">
@@ -429,8 +438,7 @@ if (!isset($_SESSION["rol"]) || ($_SESSION["rol"] !== "admin")) {
 
             <div class="validity">
                 VALIDO A PARTIR EL: 
-            <input type="date" id="valido_desde" name="valido_desde" value="01-07-2022"
-                    placeholder="01-07-2022"> 
+            <input type="date" id="valido_desde" name="valido_desde" value="<?php echo $fecha_hora; ?>" readonly> 
                 HASTA:
              <input type="date" id="valido_hasta" name="fec_ven"><!--"fec_ven" para guardar la fecha de vencimiento en la tabla licencia -->
             </div>

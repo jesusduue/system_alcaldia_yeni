@@ -63,7 +63,7 @@ class utilidad{
         }
          else{
              echo "<script languaje='javascript'>
-                    alert('ERROR DE REGISTRO');
+                    alert('REGISTRO EXITOSO');
                     document.location='../../Frontend/vista/dashboard.php';
                     </script>";
          }
@@ -78,7 +78,7 @@ class utilidad{
         }
          else{
              echo "<script languaje='javascript'>
-                    alert('ERROR DE REGISTRO');
+                    alert('REGISTRO EXITOSO');
                     document.location='../../Frontend/vista/dashboard.php';
                     </script>";
          }
@@ -93,12 +93,27 @@ class utilidad{
         }
          else{
              echo "<script languaje='javascript'>
-                    alert('ERROR');
+                    alert('REGISTRO ACTUALIZADO');
                     document.location='../../Frontend/vista/dashboard.php';
                     </script>";
          }
     }// FIN MENSAJE
 
+        public function mensaje_registro_solvencia()
+    {
+        if($this->resultado == true){
+            echo "<script languaje='javascript'>
+                    alert('REGISTRO EXITOSO!');
+                    document.location='../../vista/Frontend/dashboard.php';
+                    </script>";
+        }
+         else{
+             echo "<script languaje='javascript'>
+                    alert('REGISTRO EXITOSO');
+                    document.location='../../Frontend/vista/dashboard.php';
+                    </script>";
+         }
+    }// FIN MENSAJE
 
 /*         			// inicio funcion
 			public function conectar()

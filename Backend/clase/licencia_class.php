@@ -44,6 +44,11 @@ class licencia extends utilidad
         where id_pat = '$this->fky_pat'";
         $this->ejecutar();
     }
+    public function eliminar_licencia()
+    {
+       @ $this->que_bd = "DELETE FROM licencia WHERE id_lic = '$this->id_lic'";
+        $this->ejecutar();
+    }
 }
 
 

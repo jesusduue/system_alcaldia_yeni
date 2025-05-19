@@ -22,13 +22,13 @@
     <div class="carousel-container">
     <div class="carousel">
         <div class="carousel-item active">
-            <img src="../../public/img/carrusel1.png" alt="Imagen 1">
+            <img src="../estilos/img/carrusel1.png" alt="Imagen 1">
         </div>
         <div class="carousel-item">
-            <img src="../../public/img/carrusel2.png" alt="Imagen 2">
+            <img src="../estilos/img/carrusel2.png" alt="Imagen 2">
         </div>
         <div class="carousel-item">
-            <img src="../../public/img/carrusel3.png" alt="Imagen 3">
+            <img src="../estilos/img/carrusel3.png" alt="Imagen 3">
         </div>
     </div>
     <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>

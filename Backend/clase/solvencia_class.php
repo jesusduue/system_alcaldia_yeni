@@ -31,4 +31,19 @@ class solvencia extends utilidad
         $this->que_bd = "SELECT * FROM solvencia";
         return $this->ejecutar();
     }
+     public function eliminar()
+    {
+        @$this->que_bd = "DELETE FROM solvencia WHERE id_sol='$this->id_sol'";
+        $this->ejecutar();
+    }
+
+    public function mostrar()
+{
+  $filtro1=($this->id_sol!="")?" and id_sol='$this->'id_sol'":"";
+  //Los % son para que se busque todo con las iniciales de los nombres.
+ 
+@ $this->que_bd="SELECT * from solvencia WHERE 1=1 $filtro1 ORDER BY id_sol DESC;";
+return $this->ejecutar();
+
+}
 }

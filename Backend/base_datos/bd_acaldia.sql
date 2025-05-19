@@ -22,7 +22,7 @@ CREATE TABLE usuario (
 CREATE TABLE patente(
   id_pat int PRIMARY KEY NOT NULL AUTO_INCREMENT,  -- Identificador unico de patnte
   fec_pat date NOT NULL,                           -- Fecha de registro de la patnte
-  num_pat int DEFAULT NULL,                        -- Numero oficial de patnte (podria ser unico)
+  num_pat int DEFAULT NOT NULL,                        -- Numero oficial de patnte (podria ser unico)
   nom_pat varchar(100) NOT NULL,                   -- Nombre legal del comercio
   rep_pat varchar(100) NOT NULL,                   -- Nombre del representante legal
   rif_pat varchar(50) NOT NULL,                    -- RIF del comercio (Ej: J-12345678-9)

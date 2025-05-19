@@ -208,8 +208,8 @@ $obj_patente->puntero=$obj_patente->listar();
                             <div class='action-buttons'>
                                 <a href='generar_licencia.php?id_pat=" . htmlspecialchars($patente['id_pat']) . "'  class='license'  data-tooltip='LICENCIA'><i class='fas fa-file'></i></a>
                                 <a href='listar_licencias.php?id_pat=" . htmlspecialchars($patente['id_pat']) . "' class='license' data-tooltip='Ver licencias'><i class='fas fa-sitemap'></i></a>
-                                <a href='' class='solvencia' data-tooltip='solvencia'><i class='fas fa-file'></i></a>
-                                <a href='' class='solvencia' data-tooltip='Ver Solvencias'><i class='fas fa-layer-group'></i></a>
+                                <a href='generar_solvencia.php?id_pat=" . htmlspecialchars($patente['id_pat']) . "' class='solvencia' data-tooltip='SOLVENCIA'><i class='fas fa-file'></i></a>
+                                <a href='listar_solvencias.php?id_pat=" . htmlspecialchars($patente['id_pat']) . "' class='solvencia' data-tooltip='Ver Solvencias'><i class='fas fa-layer-group'></i></a>
                                 <a href='modificar_patente.php?id_pat=" . htmlspecialchars($patente['id_pat']) . "' class='update' data-tooltip='MODIFICAR'><i class='fas fa-edit'></i></a>
                             </div>
                         </td>";
@@ -220,13 +220,13 @@ $obj_patente->puntero=$obj_patente->listar();
         if ($i == 0) {
             echo "<script language='javascript'>
                     alert('No hay registros');
-                    document.location='dashboard.php';
+                  <!--  /* document.location='dashboard.php'; */ -->
                 </script>";
         }
         ?>
                 </tbody>
             </table>
-
+<!--  -->
         </div>
     </div>
 </main>

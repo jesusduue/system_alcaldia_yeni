@@ -78,4 +78,5 @@ class patente extends utilidad
         $this->ejecutar();
     }
 }
+
 ?>
