@@ -156,7 +156,7 @@
             <div class="modal-content">
                 <span class="close" data-close="modalAdd">&times;</span>
                 <h3>Nuevo Usuario</h3>
-                <form action="../../Backend/Controlador/personal.php" method="POST" onsubmit="return validarFormulario('add')">
+                <form action="../../Backend/Controlador/usuario.php" method="POST" onsubmit="return validarFormulario('add')">
                     <div class="form-group">
                         <label for="nom_usu_add">Nombre del Empleado:</label>
                         <input type="text" name="nom_usu" id="nom_usu_add" required>
