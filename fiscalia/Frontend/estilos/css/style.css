@@ -1,0 +1,84 @@
+/*
+  Estilos generales para la aplicación de Fiscalía
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #0056b3; /* Un azul institucional */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a {
+    color: #007bff; /* Azul para enlaces */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos básicos para formularios (si se añaden más adelante) */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+    width: calc(100% - 22px); /* Ajuste para padding y borde */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button, input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #0056b3;
+}
