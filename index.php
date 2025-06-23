@@ -17,7 +17,7 @@ $error = '';
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background-image: url('Frontend/estilos/img/alcaldia.jpg');
+        background-image: url('Frontend/estilos/img/alcaldia2.jpg');
         background-size: cover;
         background-position: center;
         display: flex;

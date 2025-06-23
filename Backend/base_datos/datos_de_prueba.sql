@@ -2,6 +2,18 @@
     LUEGO UN USUARIO CON EL ROL (admin)*/
 
 -- =============================================
+-- TABLA usuario (2 registros)
+-- =============================================
+
+/* contraseña de admin: 123456789M
+   contraseña de alejandro: 123456789 */
+INSERT INTO usuario (id_usu, nom_usu, cla_usu, fky_rol, est_usu) VALUES
+(1, 'admin', '$2y$10$OAY4hVe71R.g/MSXBwJMu.Zvh4sUGWTFuK7rDwMZkAjdwziu0yNrq', 1, 'a'),
+(2, 'alejandro', '$2y$10$W1LcxLv4mR3f0OKSDf6sKO5SbmslFl4cPTaujQxL6xr6is/Wg7Dy2', 2, 'a');
+
+
+
+-- =============================================
 -- TABLA patente (11 registros)
 -- =============================================
 INSERT INTO patente (fec_pat, num_pat, nom_pat, rep_pat, rif_pat, ubi_pat, rub_pat, fky_usu, est_pat) VALUES
