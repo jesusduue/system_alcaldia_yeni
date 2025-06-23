@@ -17,10 +17,33 @@ class usuario extends utilidad
     // Método para verificar las credenciales del usuario
     public function verificarCredenciales($nombreUsuario, $claveUsuario)
     {
-        $this->utilidad->que_bd = "SELECT u.*, r.rol FROM usuario u JOIN rol r ON u.fky_rol = r.id_rol WHERE nom_usu = '$nombreUsuario' AND cla_usu = '$claveUsuario'";
-        $this->utilidad->puntero = $this->utilidad->ejecutar();
+        // 1. Consulta SQL segura para obtener los datos del usuario por su nombre.
+        // Se usa una sentencia preparada (?) para prevenir inyección SQL.
+    $this->utilidad->que_bd = "SELECT u.*, r.rol 
+                                  FROM usuario u 
+                                  JOIN rol r ON u.fky_rol = r.id_rol 
+                                  WHERE u.nom_usu = ?";
 
-        return $this->utilidad->extraer_dato();
+        // Prepara y ejecuta la consulta de forma segura
+        $stmt = $this->utilidad->con_bd->prepare($this->utilidad->que_bd);
+        $stmt->bind_param("s", $nombreUsuario);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        // 2. Verificar si se encontró un usuario
+        if ($resultado->num_rows === 1) {
+            $usuarioData = $resultado->fetch_assoc();
+
+            // 3. Comparar la contraseña del formulario con el hash de la BD
+            // password_verify() es la función segura para esta tarea.
+            if (password_verify($claveUsuario, $usuarioData['cla_usu'])) {
+                // Si la contraseña es correcta, retorna todos los datos del usuario.
+                return $usuarioData;
+            }
+        }
+
+        // Si el usuario no existe o la contraseña es incorrecta, retorna false.
+        return false;
     }
 
 

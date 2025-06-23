@@ -107,7 +107,7 @@ $logs = $utilidad->extraer_todo();
         }
         
         .tabla-datos th {
-            background-color: #3498db;
+            background-color: #2c3e50;
             color: white;
             padding: 12px 15px;
             text-align: left;
@@ -225,7 +225,7 @@ $logs = $utilidad->extraer_todo();
                         <th>Rol</th>
                         <th>Evento</th>
                         <th>Fecha/Hora</th>
-                        <th>Duración</th>
+                        <!-- <th>Duración</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -253,13 +253,13 @@ $logs = $utilidad->extraer_todo();
                                 <?php endif; ?>
                             </td>
                             <td><?php echo date('d/m/Y H:i:s', strtotime($log['fecha_hora'])); ?></td>
-                            <td>
+<!--                             <td>
                                 <?php 
                                 // Calcular duración si es una sesión completa (entrada + salida)
                                 // Esto requeriría lógica adicional en tu base de datos
-                                echo '--'; 
+                                /* echo '--';  */
                                 ?>
-                            </td>
+                            </td> -->
                         </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

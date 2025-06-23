@@ -1,4 +1,5 @@
-<?php include_once 'header_index.php'; ?>
+<?php include_once 'header_index.php';?>
+
 <title>Recuperar Contraseña - Paso 1</title>
 <style>
     .recovery-container {
@@ -79,7 +80,8 @@
         <div class="error-message"><?php echo $error; ?></div>
     <?php endif; ?>
     
-    <form action="recuperar_clave.php?paso=1" method="post">
+    <form action="../../Backend/controlador/recuperar_clave.php" method="post">
+        <input type="hidden" name="paso" value="1">
         <div class="form-group">
             <label for="nom_usu">Nombre de Usuario:</label>
             <input type="text" id="nom_usu" name="nom_usu" required>
