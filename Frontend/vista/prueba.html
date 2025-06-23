@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual del Sistema de Patentes - Acordeón con Imágenes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Contenedor principal del acordeón */
+        .accordion-container {
+            margin: 20px auto; /* Centra el acordeón */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden; /* Importante para que la transición funcione bien */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo de cada ítem del acordeón */
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Quita el borde inferior del último ítem para una mejor estética */
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Estilo del encabezado/botón de cada ítem */
+        .accordion-header {
+            background-color: #f9f9f9;
+            color: #333;
+            cursor: pointer;
+            padding: 15px 25px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            display: flex; /* Para alinear el texto y la flecha */
+            justify-content: space-between; /* Empuja la flecha a la derecha */
+            align-items: center;
+            transition: background-color 0.3s ease; /* Suaviza el cambio de color al pasar el mouse */
+        }
+
+        /* Cambio de color al pasar el mouse o al estar activo */
+        .accordion-header:hover,
+        .accordion-header.active {
+            background-color: #e0e0e0;
+        }
+
+        /* Estilo de la flechita */
+        .arrow-icon {
+            font-size: 0.8em;
+            transition: transform 0.3s ease; /* Suaviza la rotación de la flecha */
+            margin-left: 15px; /* Espacio entre el texto y la flecha */
+            color: #666;
+        }
+
+        /* Rotar la flecha cuando el encabezado está activo (abierto) */
+        .accordion-header.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Estilo del contenido oculto por defecto */
+        .accordion-content {
+            background-color: #fff;
+            max-height: 0; /* MUY IMPORTANTE: oculta el contenido por defecto */
+            overflow: hidden; /* Oculta cualquier contenido que se desborde */
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out; /* Transición suave para la altura y padding */
+            padding: 0 25px; /* Padding inicial cero (se aplicará cuando esté abierto) */
+        }
+
+        /* Estilo del párrafo dentro del contenido */
+        .accordion-content p {
+            padding: 15px 0; /* Padding real del contenido */
+            margin: 0;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* NUEVO: Estilos para las imágenes dentro del contenido del acordeón */
+        .accordion-content img {
+            width: 100%; /* Ocupa el 100% del ancho disponible en su contenedor */
+            height: auto; /* Mantiene la proporción original de la imagen (¡NO SE DISTORSIONA!) */
+            display: block; /* Elimina cualquier espacio extra por debajo de la imagen */
+            max-width: 100%; /* Asegura que la imagen no se desborde si es inherentemente más grande */
+            margin: 15px 0; /* Añade un poco de margen vertical para separar la imagen del texto/bordes */
+            object-fit: contain; /* Asegura que la imagen se ajuste dentro de sus dimensiones sin recortarse ni distorsionarse */
+        }
+
+        /* NUEVO: Clase para aplicar el padding real cuando el acordeón está abierto (manejado por JS) */
+        .accordion-content.active-content {
+            padding: 15px 25px; /* Restaura el padding del contenido cuando está abierto */
+        }
+
+        /*
+        IMPORTANTE: La siguiente regla ha sido ELIMINADA del CSS porque la altura (max-height)
+        será manejada dinámicamente por JavaScript para adaptarse al contenido.
+        .accordion-header.active + .accordion-content { ... }
+        */
+        img{
+          border-bottom: 2px solid #076FF9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="accordion-container">
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                ¿Cómo registro una patente?
+                <span class="arrow-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+                <img src="img/Manual/registrar patente.png" alt="Imagen de registro de patente">
+              </div>
+            </div>
+            
+            <div class="accordion-item">
+              <button class="accordion-header">
+                ¿Cómo puedo ver todas las licencias/solvencias de un representante?
+                <span class="arrow-icon">&#9660;</span>
+              </button>
+              <div class="accordion-content">
+                <img src="img/Manual/Listado-1.png" alt="Imagen de registro de patente">
+                <img src="img/Manual/Listado-2.png" alt="Imagen de registro de patente">
+                <img src="img/Manual/Listado-3.png" alt="Imagen de registro de patente">
+                <img src="img/Manual/Listado-4.png" alt="Imagen de registro de patente">
+              </div>
+            </div>
+            
+            <div class="accordion-item">
+              <button class="accordion-header">
+                ¿Cómo genero una licencia?
+                <span class="arrow-icon">&#9660;</span>
+              </button>
+              <div class="accordion-content">
+              <img src="img/Manual/Listado-1.png" alt="Imagen de registro de patente">
+              <img src="img/Manual/Listado-2.png" alt="Imagen de registro de patente">
+              <img src="img/Manual/Generar-licencia-solvencia.png" alt="Imagen de registro de patente">
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <button class="accordion-header">
+              ¿Cómo registro un usuario?
+              <span class="arrow-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+              <img src="img/Manual/Crear-ver-usuarios.png" alt="Imagen de registro de patente">
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <button class="accordion-header">
+              ¿Cómo modifico o edito una patente existente?
+              <span class="arrow-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+              <img src="img/Manual/Modificar-contribuyente.png" alt="Imagen de registro de patente">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling; // El div .accordion-content es el siguiente hermano
+
+                    // Opcional: Cierra todos los demás acordeones abiertos
+                    // Si quieres que solo se abra un acordeón a la vez, descomenta el siguiente bloque:
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this) { // Si no es el encabezado que se clickeó
+                            otherHeader.classList.remove('active'); // Quita la clase 'active' del encabezado
+                            const otherContent = otherHeader.nextElementSibling;
+                            otherContent.style.maxHeight = null; // Colapsa el contenido
+                            otherContent.classList.remove('active-content'); // Quita la clase de padding
+                        }
+                    });
+
+                    // Alterna la clase 'active' en el encabezado clickeado
+                    this.classList.toggle('active');
+
+                    // Gestiona la altura del contenido y el padding
+                    if (this.classList.contains('active')) {
+                        // Si el acordeón se está abriendo
+                        // Primero, asegúrate de que el contenido sea visible para calcular scrollHeight correctamente
+                        content.style.maxHeight = 'fit-content'; // Una altura temporal para que scrollHeight sea preciso
+                        const scrollHeight = content.scrollHeight;
+                        content.style.maxHeight = scrollHeight + "px"; // Luego, establece la altura real
+
+                        content.classList.add('active-content'); // Añade la clase para el padding
+                    } else {
+                        // Si el acordeón se está cerrando
+                        // Establece la altura a la altura real antes de colapsar para que la transición sea suave
+                        content.style.maxHeight = content.scrollHeight + "px"; // Temporalmente a su altura actual
+                        requestAnimationFrame(() => { // Pequeño truco para asegurar que la altura se aplique antes de cambiar a null
+                            content.style.maxHeight = null; // Restablece max-height para permitir la transición de cierre
+                        });
+                        content.classList.remove('active-content'); // Quita la clase de padding
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

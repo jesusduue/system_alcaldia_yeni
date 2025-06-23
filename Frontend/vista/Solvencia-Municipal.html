@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Times New Roman;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .principal {
+            font-size: 25px;
+            font-weight: bold;
+            margin: auto;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+        }
+
+        main{
+            width: 800px;
+            height: 1000px;
+            margin: auto;
+            padding: 20px;
+            background-image: url(img/fondo-solvencia.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: .5px solid rgb(218, 212, 212);
+        }
+        .tabla-grid {
+            gap: 0;
+            border: .5px solid black;
+            width: 650px;
+            font-size: 14px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* 2 columnas */
+            grid-template-rows:repeat(10, 20px);
+        }
+        .grid-item {
+            border: 1px solid black;
+            display: flex;
+        }
+        .input-box{
+            border: none;
+            outline: none;
+            display: flex;
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+        }
+        input{
+            background: transparent;
+            outline: none;
+            font-family: 'Times New Roman', Times;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        input:active{
+            outline: none;
+        }
+        .direccion{
+            width: 90%;
+        }
+        .solvencia{
+            width: 75%;
+        }
+        .label-bajo{
+            border-bottom: none;
+        }
+        .grid-item:nth-child(1) {
+            grid-column: 1/3;
+            grid-row: 1/ 2;
+        }
+        .grid-item:nth-child(2) {
+            grid-column: 1/3;
+            grid-row: 2/ 3;
+        }
+        .grid-item:nth-child(3) {
+            grid-column: 1/2;
+            grid-row: 3/ 4;
+        }
+        .grid-item:nth-child(4) {
+            grid-column: 1/2;
+            grid-row: 4/5;
+        }
+        .grid-item:nth-child(5) {
+            grid-column: 2/3;
+            grid-row: 3/4;
+        }
+        .grid-item:nth-child(6) {
+            grid-column: 2/3;
+            grid-row: 4/5;
+        }
+        .grid-item:nth-child(7) {
+            grid-column: 1/3;
+            grid-row: 5/6;
+        }
+        .grid-item:nth-child(8) {
+            grid-column: 1/3;
+            grid-row: 6/7;
+        }
+        .grid-item:nth-child(9) {
+            grid-column: 1/3;
+            grid-row: 7/8;
+        }
+        .grid-item:nth-child(10) {
+            grid-column: 1/3;
+            grid-row: 8/9;
+        }
+        .grid-item:nth-child(11) {
+            grid-column: 1/2;
+            grid-row: 9/10;
+        }
+        .grid-item:nth-child(12) {
+            grid-column: 1/2;
+            grid-row: 10/11;
+        }
+        .grid-item:nth-child(13) {
+            grid-column: 2/3;
+            grid-row: 9/10;
+        }
+        .grid-item:nth-child(14) {
+            grid-column: 2/3;
+            grid-row: 10/11;
+        }
+        
+        .none{
+            outline: none;
+            border: none;
+        }
+        .box{
+            border: 1px solid black;
+        }
+        .dir{
+            width: 100%;
+        }
+        .sol{
+            width: 75%;
+        }
+        .fecha-apertura{
+            float: right;
+            font-size: 18px;
+            font-weight: 400;
+            white-space: nowrap;
+            width: auto;
+        }
+        .parrafo{
+            font-size: 15px;
+        }
+        #num_catastro{
+            width: 30px;
+        }
+        .table-grid-new{
+            gap: 0;
+            width: 670px;
+            font-size: 14px;
+            margin: 160px auto 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 150px 100px;
+            /* 2 columnas */
+            grid-template-rows:30px 10px 30px 10px repeat(3, 30px) 20px;
+        }
+        .item-new{
+            display: flex;
+        }
+        .item-new:first-child{
+            grid-column:2/4;
+            grid-row: 1/2;
+        }
+        .item-new:nth-child(2){
+            grid-column:1/4;
+            grid-row: 3/4;
+        }
+        .item-new:nth-child(3){
+            grid-column:1/4;
+            grid-row: 5/7;
+        }
+        .item-new:nth-child(4){
+            grid-column:3/4;
+            grid-row: 7/8;
+        }
+        
+        .numero-solvencia{
+            font-size: 25px;
+            font-weight: 900;
+            outline: none;
+            border: none;
+        }
+        .numero-solvencia input{
+            width: 70px;
+            border: none;
+            outline: none;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: start;
+        }
+        .item-new > p{
+            font-size: 18px;
+            outline: none;
+            border: none;
+            text-indent: 90px;
+            font-weight: 400;
+        }
+        
+        .detalles-contribuyentes > p{
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .detalles-contribuyentes {
+            margin: 20px auto 100px auto;
+            width: 650px;
+            height: 100px;
+            display: flex;
+            text-align: justify;
+            justify-content: center;
+            align-items: center;
+        }
+        .center{            
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .detalles-contribuyentes > p > span{
+            font-weight: 700;
+        }
+        .item-new > p > input{
+            border: none;
+            font-weight: 400;
+            font-size: 20px;
+            text-align: start;
+        }
+        .firma{
+            width: 210px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <main>
+        <div class="table-grid-new">
+            <div class="item-new fecha-apertura">LA FRÍA, 11 DE ABRIL DE 2025</div>
+            <div class="item-new principal center">SOLVENCIA MINICIPAL TIPO A</div>
+            <div class="item-new">
+                <p>Quien suscribe, LCDA LISETT C. GRUESO DE SANCHEZ Otorga la presente Solvencia Municipal a:<input class="propietario" type="text" name="" id=""  ></p></div>
+            <div class="item-new numero-solvencia"><span>No.</span> <input type="text" style="width: 70px;"  ></div>
+        </div>
+
+        <div class="tabla-grid">
+            <label class="grid-item label-bajo">PROPIETARIO DEL INMUEBLE</label>
+            <input class="grid-item input-box"  ></input>
+            <label class="grid-item label-bajo">CEDULA DE IDENTIDAD</label>
+            <input class="grid-item input-box"  ></input>
+            <label class="grid-item label-bajo">RIF</label>
+            <input class="grid-item input-box"  ></input>
+            <label class="grid-item none box">DIRECCION
+                <input class="grid-item input-box none dir"  ></input>
+            </label>
+            <label class="grid-item box">SOLVENCIA TIPO A PARA: 
+                <input class="grid-item input-box none sol"  ></input>
+            </label>
+            <label class="grid-item label-bajo">NUMERO CATASTRAL</label>
+            <input class="grid-item input-box"  ></input>
+            <label class="grid-item label-bajo">VIGENCIA DESDE</label>
+            <input type="text" class="grid-item input-box"  >
+            <label class="grid-item label-bajo"  >HASTA</label>
+            <input type="text" class="grid-item input-box"  >
+        </div>
+        <div class="detalles-contribuyentes">
+            <p>Después de haber revisado y comprobado que en contribuyente antes mencionado no presenta ninguna deuda en el PRIMER trimestre del año <span>2025</span> con el municipio, de acuerdo al régimen tributario municipal. Se expide SOLVENCIA a solicitud de la parte interesa, con vigencia hasta el <span>(SEGUNDO)</span> trimestre del año fiscal <span>2025</span></p>
+        </div>
+        <div class="container-firma center">
+            <input type="text" class="firma"  ><br>
+            <label for="firma">LCDA, LISETT C. GRUESO DE SANCHEZ <br> DIRECTORA DE RECAUDACIÓN <br> Y TRIBUTOS MUNICIPALES</label>
+        </div>
+    </main>
+</body>
+</html>
